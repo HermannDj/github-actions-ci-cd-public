@@ -17,11 +17,11 @@ jobs:
               
             - name: Print environment variables
               run: |
-                echo "Common ID: ${{ vars.common_id }}"
+                "echo "Common ID: ${{ vars.common_id }}"
 
             - name: Print secret
               run: |
-                echo "Password: ${{ secrets.password }}"
+                "echo "Password: ${{ secrets.password }}"
     
     deploy-to-production:
         runs-on: ubuntu-latest
@@ -31,7 +31,9 @@ jobs:
               uses: actions/checkout@v2
 
             - name: Print environment variables
-              run: "echo \"Common ID: ${{ vars.common_id }}"
+              run: |
+                "echo "Common ID: ${{ vars.common_id }}"
 
             - name: Print secret
-              run: "echo \"Password: ${{ secrets.password }}"
+              run: |
+                "echo "Password: ${{ secrets.password }}"
