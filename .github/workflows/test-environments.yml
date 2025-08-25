@@ -1,6 +1,5 @@
 name: Deploy to Environments
 
-
 on:
   push: 
     branches:
@@ -8,33 +7,38 @@ on:
       - main
 
 jobs:
-    deploy-to-staging:
-        runs-on: ubuntu-latest
-        environment: staging
-        steps:
-            - name: Checkout code
-              uses: actions/checkout@v2
+  deploy-to-staging:
+    runs-on: ubuntu-latest
+    environment: staging
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
               
-            - name: Print environment variables
-              run: |
-                "echo "Common ID: ${{ vars.common_id }}"
+      - name: Print environment variables
+        run: |
+          echo "Common ID: ${{ vars.common_id }}"
 
-            - name: Print secret
-              run: |
-                "echo "Password: ${{ secrets.password }}"
+      - name: Print secret
+        run: |
+          echo "Password: ${{ secrets.password }}"
     
-    deploy-to-production:
-        runs-on: ubuntu-latest
-        environment: production
-        steps:
-            - name: Checkout code
-              uses: actions/checkout@v2
+  deploy-to-production:
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-            - name: Print environment variables
-              run: |
-                "echo "Common ID: ${{ vars.common_id }}"
+      - name: Print environment variables
+        run: |
+          echo "Common ID: ${{ vars.common_id }}"
 
+<<<<<<< HEAD
             - name: Print secret
               run: |
                 "echo "Password: ${{ secrets.password }}"
- 
+=======
+      - name: Print secret
+        run: |
+          echo "Password: ${{ secrets.password }}"
+>>>>>>> db9177a (fix bug)
