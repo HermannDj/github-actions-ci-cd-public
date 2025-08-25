@@ -17,7 +17,6 @@ jobs:
       - name: Print environment variables
         run: |
           echo "Common ID: ${{ vars.common_id }}"
-
       - name: Print secret
         run: |
           echo "Password: ${{ secrets.password }}"
@@ -33,12 +32,6 @@ jobs:
         run: |
           echo "Common ID: ${{ vars.common_id }}"
 
-<<<<<<< HEAD
-            - name: Print secret
-              run: |
-                "echo "Password: ${{ secrets.password }}"
-=======
       - name: Print secret
         run: |
           echo "Password: ${{ secrets.password }}"
->>>>>>> db9177a (fix bug)
