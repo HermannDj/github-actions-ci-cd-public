@@ -68,6 +68,7 @@ jobs:
             - name: Deploy application
               run: |
                 echo "Deploying to ${{ github.ref }}" on environment ${{ github.event.inputs.environment }}
-                
+            
+
 
             
