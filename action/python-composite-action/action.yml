@@ -1,19 +1,19 @@
-name: "Instqll Python Dependencies and Run Tests"
+name: "Install Python Dependencies and Run Tests"
 description: "Installe les dependances Python et execute les tests"
 author: "Hermann DJOKO"
+
 inputs:
   python-version:
-    description: "Version de Python a installer"
+    description: "Version de Python à installer"
     required: true
   run-tests:
     description: "Execute des tests ou non"
     required: false
     default: "true"
 
-  
 outputs:
   test-status:
-    description: "Le statut de l'execution des tests"
+    description: "Le statut de l'exécution des tests"
 
 runs:
   using: "composite"
@@ -26,10 +26,12 @@ runs:
     - name: Install dependencies
       run: |
         pip install -r requirements.txt
+      shell: bash
 
     - name: Run tests
       if: ${{ inputs.run-tests == 'true' }}
       run: python test_script.py
+      shell: bash
 
     - name: Set output for test status
       if: ${{ inputs.run-tests == 'true' }}
