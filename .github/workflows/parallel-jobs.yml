@@ -3,36 +3,34 @@ name: Parallel Jobs with Matrix and Environments
 on: [push]
 
 jobs:
-    build-and-deploy:
-        runs-on: ubuntu-latest
-        strategy:
-            matrix:
-#                environment: [staging, preproduction, production]
-#                python-version: [3.6, 3.7, 3.8]
-                include:
-                    - environment: staging
-                    python-version: 3.6
-                    - environment: preproduction
-                    python-version: 3.7
-                    - environment: production
-                    python-version: 3.8
-                 
-            fail-fast: false
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        # environment: [staging, preproduction, production]
+        # python-version: [3.6, 3.7, 3.8]
+        include:
+          - environment: staging
+            python-version: 3.6
+          - environment: preproduction
+            python-version: 3.7
+          - environment: production
+            python-version: 3.8
+      fail-fast: false
 
-        environment: ${{ matrix.environment }}
+    environment: ${{ matrix.environment }}
 
-        steps:
-            - name: Checkout code
-              uses: actions/checkout@v2
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-            - name: Set up Python ${{ matrix.python-version }}
-              uses: actions/setup-python@v2
-              with:
-                  python-version: ${{ matrix.python-version }}
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
 
-
-            - name: Deploy to ${{ matrix.environment }} environment
-              if: success() && (matrix.environment == 'staging' || matrix.environment == 'preproduction' || (matrix.environment == 'production' && github.ref == 'refs/heads/main'))
-              run: |
-                  echo "Deploying to ${{ matrix.environment }} environment"
-                  # Add your deployment script/commands here
+      - name: Deploy to ${{ matrix.environment }} environment
+        if: success() && (matrix.environment == 'staging' || matrix.environment == 'preproduction' || (matrix.environment == 'production' && github.ref == 'refs/heads/main'))
+        run: |
+          echo "Deploying to ${{ matrix.environment }} environment"
+          # Add your deployment script/commands here
