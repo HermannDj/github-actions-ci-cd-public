@@ -9,9 +9,9 @@ on:
       run-tests:
         required: false
         type: boolean
-      secrets:
-        secret_token:
-          required: true
+    secrets:
+      SECRET_TOKEN:
+        required: true
 
 jobs:
   build:
@@ -39,4 +39,4 @@ jobs:
       - name: Use secret token
         run: echo "Using secret token"
         env:
-          SECRET_TOKEN: ${{ inputs.secrets.secret_token }}
+          SECRET_TOKEN: ${{ secrets.SECRET_TOKEN }}
