@@ -1,0 +1,31 @@
+name: "Demo of Variable Priority in GitHub Actions"
+
+on:
+    push:
+        branches:
+            - main
+
+
+jobs:
+    test-priority:
+        runs-on: ubuntu-latest
+        environment: staging
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v2
+
+            - name: Print Environment Variable
+              env:
+                  LOCAL_VAR: "Local Value"
+              run: echo "The value of MY_VAR is: $LOCAL_VAR"
+
+            - name: Afficher la variable VAR_1  (definie a la fois dans environment, repository et organisation)
+              run: |
+                echo "The value of VAR_1 is: ${{ vars_VAR1 }}"
+            
+            - name: Afficher la variable VAR_2  (definie a la fois dans repository et organisation)
+              run: |
+                echo "The value of VAR_2 is: ${{ vars_VAR2 }}"
+
+            - name: Afficher la variable VAR_3  (definie uniquement dans organisation)
+              run: echo "The value of VAR_3 is: ${{ vars_VAR3 }}"
