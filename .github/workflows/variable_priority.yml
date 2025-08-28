@@ -16,7 +16,8 @@ jobs:
       - name: Print Environment Variable
         env:
           LOCAL_VAR: "Local Value"
-        run: echo "The value of MY_VAR is: $LOCAL_VAR"
+        run: |
+            echo "The value of MY_VAR is: $LOCAL_VAR"
 
       - name: Afficher la variable VAR_1 (definie a la fois dans environment, repository et organisation)
         run: |
